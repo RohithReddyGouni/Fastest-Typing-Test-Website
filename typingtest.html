@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>
-Type Fast
+Fastest Typing Test
 </title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,7 +69,9 @@ Type Fast
     </div>
 <script>
     const setofWords = [ 
-        " I am a student", "Hope you are having fun","I Hope you are learning javascript very well"];
+        " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+         "Richard McClintock, a Latin scholar from Hampden-Sydney College, is credited with discovering the source behind the ubiquitous filler text. In seeing a sample of lorem ipsum, his interest was piqued by consectetur—a genuine, albeit rare, Latin word. Consulting a Latin dictionary led McClintock to a passage from De Finibus Bonorum et Malorum (“On the Extremes of Good and Evil”), a first-century B.C. text from the Roman philosopher Cicero.",
+          "McClintock's eye for detail certainly helped narrow the whereabouts of lorem ipsum's origin, however, the “how and when” still remain something of a mystery, with competing theories and timelines."];
         const msg=document.getElementById('msg');
         const typeWords=document.getElementById('mywords');
         const btn=document.getElementById('btn');
@@ -90,10 +92,10 @@ Type Fast
             let wordCount=wordCounter(totalStr); 
 
             let speed=Math.floor((wordCount/timeTaken)*60);
-            let finalMsg=`You Typed ${wordCount} words in ${timeTaken} seconds with a speed of ${speed} words per minute.`;
+            let finalMsg=`You Typed ${wordCount} words in ${timeTaken} seconds at a speed of ${speed} words per minute.`;
             finalMsg=finalMsg+compareWords(msg.innerText,totalStr);
             msg.innerText=finalMsg;
-            console.log(finalMsg);
+            
     }
         const wordCounter=(str)=>{
         let wordCount=0;
@@ -112,7 +114,20 @@ Type Fast
             }
         });
         let errorWords=words1.length-count;
-        return `You Typed ${count} words correctly and ${errorWords} words in error.`;
+        if(count ===1 && errorWords === 1)
+        {
+           return `Typed ${count} word correctly and ${errorWords} word in error.`;
+        }
+        else if(count ===1 && errorWords === 0)
+        {
+            return `Typed ${count} word correctly and ${errorWords} words in error.`;
+        }
+        else if(count ===0 && errorWords === 1)
+        {
+            return `Typed ${count} words correctly and ${errorWords} word in error.`;
+        }
+
+        return `Typed ${count} words correctly and ${errorWords} words in error.`;
     }
 
         btn.addEventListener('click',function (){
@@ -124,6 +139,7 @@ Type Fast
                 typeWords.disabled=true;
                 btn.innerText="Start";
                 endGame();
+                typeWords.value="";
             }
         });
 </script>
