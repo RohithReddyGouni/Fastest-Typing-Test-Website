@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>
+Type Fast
+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
+<style>
+    *{padding: 0;margin: 0;box-sizing: border-box; font-family: 'Merriweather', serif;}
+    .mainDiv
+    {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        background-color: pink;
+    }
+
+    .centerDiv{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align:center;
+    }
+    h1{
+        text-transform: capitalize;
+        margin-bottom: 30px;
+        color:#ecf0f1;
+        text-shadow: 1px 2px 3px #2980b9;
+        font-size: 2.1rem;
+    }
+
+    h2{text-align: center;}
+
+    textarea{
+        background-color: #444;
+        box-shadow: 0 0 1px rgba(0,0,0,0.5);
+        border-radius: 10px 10px 10px 10px;
+        border: 20px solid #34495e;
+        color: white;
+        font-size:1.3rem;
+    }
+
+    .mainbtn { padding:10px,10px;
+    border-radius: 20px;
+    border:5px solid rgb(135, 187, 44);
+    background: #ecf0f1;
+    font-size: 1rem;
+}
+
+
+</style>
+</head>
+<body>
+    <div class="mainDiv">
+        <div class="centerDiv">
+            <h1>Welcome To Typing Speed Test</h1>
+            <h2 id="msg"></h2>
+            <br>
+            <textarea id="mywords" cols="100" rows="10" placeholder="Type Here"></textarea>
+            <br>
+            <button id="btn" class="mainbtn">Start</button>
+
+
+    </div>
+<script>
+    const setofWords = [ 
+        " I am a student", "Hope you are having fun","I Hope you are learning javascript very well"];
+        const msg=document.getElementById('msg');
+        const typeWords=document.getElementById('mywords');
+        const btn=document.getElementById('btn');
+        let startTime,endTime;
+        const playGame=()=>{
+            let randomNumber=Math.floor(Math.random()*setofWords.length);
+            msg.innerText=setofWords[randomNumber];
+            let date=new Date();
+            startTime=date.getTime();
+            btn.innerText= 'Done';
+        } 
+        const endGame=()=>{
+            let date=new Date();
+            endTime=date.getTime();
+            let timeTaken=((endTime-startTime)/1000); 
+            console.log(timeTaken); 
+        }
+        btn.addEventListener('click',function (){
+            if(this.innerText=='Start'){
+                typeWords.disabled=false;
+                playGame();
+            }
+            else if(this.innerText=='Done'){
+                typeWords.disabled=true;
+                btn.innerText="Start";
+                endGame();
+            }
+        });
+</script>
+</body>
+</html>
