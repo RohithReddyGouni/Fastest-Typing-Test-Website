@@ -86,7 +86,35 @@ Type Fast
             endTime=date.getTime();
             let timeTaken=((endTime-startTime)/1000); 
             console.log(timeTaken); 
-        }
+            let totalStr=typeWords.value;
+            let wordCount=wordCounter(totalStr); 
+
+            let speed=Math.floor((wordCount/timeTaken)*60);
+            let finalMsg=`You Typed ${wordCount} words in ${timeTaken} seconds with a speed of ${speed} words per minute.`;
+            finalMsg=finalMsg+compareWords(msg.innerText,totalStr);
+            msg.innerText=finalMsg;
+            console.log(finalMsg);
+    }
+        const wordCounter=(str)=>{
+        let wordCount=0;
+        let string=str.split(' ');
+        wordCount=string.length;
+        console.log(wordCount);
+        return wordCount;
+    }
+    const compareWords=(str1,str2)=>{
+        let words1=str1.split(' ');
+        let words2=str2.split(' ');
+        let count=0;
+        words1.forEach(function(word,index){
+            if(word===words2[index]){
+                count++;
+            }
+        });
+        let errorWords=words1.length-count;
+        return `You Typed ${count} words correctly and ${errorWords} words in error.`;
+    }
+
         btn.addEventListener('click',function (){
             if(this.innerText=='Start'){
                 typeWords.disabled=false;
